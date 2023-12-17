@@ -1,0 +1,71 @@
+﻿@model IEnumerable<SpaceBooking.Models.Booking>
+
+@{
+    ViewData["Title"] = "Space";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1 class="text-center">Welcome To space Booking</h1>
+<input type="button" value="Booking Space" class="btn btn-primary" onclick="location.href='@Url.Action("createbooking", "Space")'" />
+       
+<input type="button" value="Customer List" class="btn btn-primary" onclick="location.href='@Url.Action("Customer", "Space")'" />
+<input type="button" value="Space List" class="btn btn-primary" onclick="location.href='@Url.Action("Space","Space")'" />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartHuors)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndHuors)
+            </th>
+           
+            <th> Edit </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingID)
+            </td>
+                <td>
+                 @Html.DisplayFor(modelItem => item.Customer.FirstName)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartHuors)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndHuors)
+                </td>
+            
+            
+            <td>
+                  
+                    <a asp-action="Delete" asp-route-id="@item.BookingID">
+                        <span class="material-symbols-outlined">
+                            delete
+                        </span>
+                    </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<SpaceBooking.Models.Space>
+
+@{
+    ViewData["Title"] = "Space";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1 class="text-center">Space List</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SpaceID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.spaceName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categories)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Capacity)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SpaceID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.spaceName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categories)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Capacity)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<input type="button" value="Back to Home" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Space")'" />
+

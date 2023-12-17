@@ -1,0 +1,94 @@
+﻿@model SpaceBooking.Models.Booking
+
+@{
+    ViewData["Title"] = "Booking";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Booking a space</h4>
+@using (Html.BeginForm("createbooking", "Space", FormMethod.Post, new { enctype = "multipart/Form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group row">
+            <div class="form-groupd">
+                <label class="labels">CustomerID</label>
+               <div class="col-md-10">
+                    @Html.DropDownList("Customer", null, new{ htmlAttributes = new { @class = "form-control" }})
+                    @Html.ValidationMessageFor(model => model.CustomerID, "", new { @class = "text-danger" })
+                  </div>
+            </div>
+            <br>
+            <div class="form-groupd">
+                <label class="labels">SpaceID</label>
+                <div class="col-md-10">
+                    @Html.DropDownList("Space",null, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SpaceID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <!--date -->
+        <div class="d-inline-flex">
+            <div class="form-group">
+                <label class="labels">StartDate</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @type ="date"  } })
+                    @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+               
+                </div>
+            
+            </div>
+            <div class="form-group">
+                <label class="labels">EndDate</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @type ="date" } })
+                    @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <br>
+            <!--housrs -->
+        <div class="d-inline-flex">
+            <div class="form-group">
+                <label class="labels">Start time</label>
+                <div class="col-md-10">
+                    
+                    @Html.EditorFor(model => model.StartHuors, new { htmlAttributes = new { @type = "time" } })
+                    @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                   
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="labels">End time</label>
+                <div class="col-md-10">
+
+                    @Html.EditorFor(model => model.EndHuors, new { htmlAttributes = new { @type = "time" } })
+                    @Html.ValidationMessageFor(model => model.EndHuors, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+            <!--end hours-->
+        </div>
+            <div class="form-group">
+                <label class="labels">Notes</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                </div>
+            </div>
+      
+
+        <div class="form-group m-2">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="button" value="Back to List" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Space")'" />
+            </div>
+        </div>
+
+    </div>
+}
+
+        
